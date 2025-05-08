@@ -1,0 +1,74 @@
+h1 {
+  font-size: var(--mantine-h1-font-size);
+  line-height: var(--mantine-h1-line-height);
+  font-weight: var(--mantine-h1-font-weight);
+}
+h2 {
+  font-size: var(--mantine-h2-font-size);
+  line-height: var(--mantine-h2-line-height);
+  font-weight: var(--mantine-h2-font-weight);
+}
+h3 {
+  font-size: var(--mantine-h3-font-size);
+  line-height: var(--mantine-h3-line-height);
+  font-weight: var(--mantine-h3-font-weight);
+}
+h4 {
+  font-size: var(--mantine-h4-font-size);
+  line-height: var(--mantine-h4-line-height);
+  font-weight: var(--mantine-h4-font-weight);
+}
+h5 {
+  font-size: var(--mantine-h5-font-size);
+  line-height: var(--mantine-h5-line-height);
+  font-weight: var(--mantine-h5-font-weight);
+}
+h6 {
+  font-size: var(--mantine-h6-font-size);
+  line-height: var(--mantine-h6-line-height);
+  font-weight: var(--mantine-h6-font-weight);
+}
+p {
+  font-size: var(--mantine-p-font-size);
+  line-height: var(--mantine-p-line-height);
+  font-weight: var(--mantine-p-font-weight);
+}
+
+blockquote {
+  font-size: var(--mantine-font-size-lg);
+  line-height: var(--mantine-line-height);
+  margin: var(--mantine-spacing-md) 0;
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-md) var(--mantine-spacing-lg);
+  background-color: var(--mantine-color-gray-0);
+}
+
+a {
+  color: var(--mantine-color-anchor);
+  text-decoration: none;
+  cursor: text;
+}
+
+ul,
+ol {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+  margin-bottom: var(--mantine-spacing-md);
+  padding-inline-start: var(--mantine-spacing-xl);
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+code {
+  background-color: var(--mantine-color-gray-0);
+  color: var(--mantine-color-black);
+  line-height: var(--mantine-line-height);
+  padding: calc(0.0625rem * var(--mantine-scale)) calc(0.3125rem * var(--mantine-scale));
+  border-radius: var(--mantine-radius-sm);
+  font-family: var(--mantine-font-family-monospace);
+  font-size: var(--mantine-font-size-xs);
+}
