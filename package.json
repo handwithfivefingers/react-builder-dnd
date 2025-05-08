@@ -19,11 +19,13 @@
     "@remix-run/node": "^2.16.5",
     "@remix-run/react": "^2.16.5",
     "@remix-run/serve": "^2.16.5",
+    "@tiptap/extension-font-family": "^2.12.0",
     "@tiptap/extension-highlight": "^2.12.0",
     "@tiptap/extension-link": "^2.12.0",
     "@tiptap/extension-subscript": "^2.12.0",
     "@tiptap/extension-superscript": "^2.12.0",
     "@tiptap/extension-text-align": "^2.12.0",
+    "@tiptap/extension-text-style": "^2.12.0",
     "@tiptap/extension-underline": "^2.12.0",
     "@tiptap/pm": "^2.12.0",
     "@tiptap/react": "^2.12.0",
@@ -59,5 +61,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -6,23 +6,8 @@ import { BackgroundImage, Box } from "@mantine/core";
 import { cn } from "~/libs/utils";
 import Setting from "../ui/setting";
 import { BoxShadow } from "../ui/setting/boxShadow";
+import { IBackgroundImage, IBgImgSetting } from "~/constant/backgroundImage";
 
-interface IBackgroundImage {
-  src?: string;
-  boxShadow?: string;
-  children?: React.ReactNode;
-  w?: number;
-  maw?: number;
-  radius?: string;
-}
-
-interface ISetting {
-  src?: string;
-  w?: number | string;
-  maw?: number | string;
-  radius?: string;
-  boxShadow: string;
-}
 export const DBackgroundImage = ({
   src = "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png",
   boxShadow,
@@ -72,28 +57,26 @@ export const ImageSetting = () => {
       <Setting.TextField
         label="source"
         value={src}
-        onChange={(e) => setProp((props: ISetting) => (props.src = e.target.value))}
+        onChange={(e) => setProp((props: IBgImgSetting) => (props.src = e.target.value))}
       />
       <Setting.TextField
         label="width"
         value={w}
-        onChange={(e) => setProp((props: ISetting) => (props.w = e.target.value))}
+        onChange={(e) => setProp((props: IBgImgSetting) => (props.w = e.target.value))}
       />
       <Setting.TextField
         label="max-width"
         value={maw}
-        onChange={(e) => setProp((props: ISetting) => (props.maw = e.target.value))}
+        onChange={(e) => setProp((props: IBgImgSetting) => (props.maw = e.target.value))}
       />
 
       <Setting.SelectInput
         label="Radius"
         value={"md"}
         options={["sm", "md", "lg", "xl"]}
-        onChange={(e: any) => setProp((props: ISetting) => ((props as any).radius = e))}
+        onChange={(e: any) => setProp((props: IBgImgSetting) => ((props as any).radius = e))}
       />
       <BoxShadow value={boxShadow} onChange={(e: string) => setProp((props: any) => (props.boxShadow = e))} />
-
-      {/* <Background value={bg} onChange={(e: string) => setProp((props: any) => (props.bg = e))} /> */}
     </Setting.Root>
   );
 };

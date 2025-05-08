@@ -1,14 +1,11 @@
-/* eslint-disable import/no-unresolved */
 import { Editor, Element, Frame } from "@craftjs/core";
 import { Layers } from "@craftjs/layers";
 import { Divider, Text } from "@mantine/core";
 import type { MetaFunction } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
 import { DND_RESOLVER } from "~/components";
-import { DButton } from "~/components/button";
-import { DContainer } from "~/components/container";
+import { AppRoot } from "~/components/appRoot";
 import { SettingsPanel } from "~/components/settingPanel";
-import { DText } from "~/components/text";
 import { Toolbox } from "~/components/toolbox";
 import { Topbar } from "~/components/topBar";
 
@@ -39,7 +36,6 @@ export default function Index() {
             <Topbar onSubmit={onSubmit} />
           </div>
           <div className="grid grid-cols-12 col-span-12 h-[calc(100svh-100px)] gap-2">
-
             <div className="md:col-span-3 lg:col-span-2 h-full pl-2">
               <div className="flex flex-col h-full w-full bg-white rounded shadow overflow-hidden">
                 <div className="px-4 py-2 bg-indigo-200">
@@ -49,12 +45,10 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="md:col-span-6 lg:col-span-8 h-[inherit] bg-slate-100 border shadow rounded overflow-y-auto">
-              <div className="py-8 rounded">
-                <Frame>
-                  <Element is={DContainer} bg="#fff" p={16} canvas size="md" mih={"100svh"} />
-                </Frame>
-              </div>
+            <div className="md:col-span-6 lg:col-span-8 overflow-y-auto">
+              <Frame>
+                <Element is={AppRoot} className="h-full bg-white w-full" canvas />
+              </Frame>
             </div>
 
             <div className="p-2 md:col-span-3 lg:col-span-2 flex flex-col gap-4 bg-indigo-200 rounded shadow pr-2  overflow-auto">

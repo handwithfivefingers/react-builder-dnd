@@ -81,4 +81,40 @@ module.exports = {
       },
     },
   ],
+  rules: {
+    // React
+    "import/no-unresolved": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/jsx-no-bind": [
+      "error",
+      {
+        ignoreRefs: true,
+        allowArrowFunctions: true,
+        allowFunctions: true,
+        allowBind: false,
+      },
+    ],
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        enforceDynamicLinks: "always",
+      },
+    ],
+    "react/jsx-key": ["error", { checkFragmentShorthand: true }],
+    "react/jsx-no-duplicate-props": ["error", { ignoreCase: false }],
+    "react/no-unescaped-entities": [
+      "error",
+      {
+        forbid: [">", "}"],
+      },
+    ],
+
+    // Typescript
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+    ],
+  },
 };

@@ -1,30 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// components/user/Button.js
-import React from "react";
-// import { Button as MaterialButton } from "@mui/material";
 import { Node, useNode } from "@craftjs/core";
-import { Button, InputLabel, MantineSize, Select, TextInput } from "@mantine/core";
+import { Button, InputLabel, Select, TextInput } from "@mantine/core";
 import { Background } from "../ui/setting/background";
+import { IButton, SIZE, VARIANT } from "~/constant/button";
 
-interface IButton {
-  variant?: ButtonVariant;
-  size?: MantineSize;
-  color?: string;
-  children: React.ReactNode;
-  bg?: string;
-}
-export type ButtonVariant =
-  | "filled"
-  | "light"
-  | "outline"
-  | "transparent"
-  | "white"
-  | "subtle"
-  | "default"
-  | "gradient";
-
-export const VARIANT = ["default", "filled", "light", "outline", "transparent", "white", "subtle", "gradient"];
-export const SIZE = ["xs", "sm", "md", "lg", "xl"];
 export const DButton = ({ size, variant = "default", color, children, bg }: IButton) => {
   const {
     connectors: { connect, drag },

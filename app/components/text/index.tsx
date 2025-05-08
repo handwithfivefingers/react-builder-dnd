@@ -3,7 +3,8 @@ import { Node, useEditor, useNode } from "@craftjs/core";
 import { useEffect, useState } from "react";
 import { DEditor } from "../editor";
 import Setting from "../ui/setting";
-
+import styles from "./styles.module.css";
+import { cn } from "~/libs/utils";
 interface IText {
   p?: number | string;
   text: string;
@@ -12,12 +13,12 @@ export const DText = ({ text, p }: IText) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
-    // hasDraggedNode,
     actions: { setProp },
-    // ...rest
+    isHover,
   } = useNode((state) => ({
     hasSelectedNode: state.events.selected,
     hasDraggedNode: state.events.dragged,
+    isHover: state.events.hovered,
   }));
   const { store } = useEditor();
   const isEnabled = (store.getState() as any)?.options?.enabled || false;
@@ -42,7 +43,13 @@ export const DText = ({ text, p }: IText) => {
       className="relative"
     >
       {!editable ? (
-        <div dangerouslySetInnerHTML={{ __html: text }} style={{ padding: p }} />
+        <div
+          className={cn(styles.content, {
+            ["outline-1 outline-dashed outline-neutral-500"]: isHover && !hasSelectedNode,
+          })}
+          dangerouslySetInnerHTML={{ __html: text }}
+          style={{ padding: p }}
+        />
       ) : (
         <DEditor content={text} onSave={onSave} onCancel={onCancel} />
       )}

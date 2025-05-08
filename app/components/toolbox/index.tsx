@@ -25,7 +25,12 @@ export const Toolbox = () => {
         </Button>
         <Button
           variant="filled"
-          ref={(ref: HTMLButtonElement) => connectors.create(ref, <Element is={DText} text="Hello Text" />)}
+          ref={(ref: HTMLButtonElement) =>
+            connectors.create(
+              ref,
+              <Element is={DText} text={`<span style="font-family:'Inter'">Hello Container</span>`} />
+            )
+          }
         >
           Text
         </Button>
@@ -35,7 +40,7 @@ export const Toolbox = () => {
             connectors.create(
               ref,
               <Element is={DContainer} bg="#fff" p={16} canvas size="md">
-                <Element is={DText} text="Hello Container" />
+                <Element is={DText} text={`<span style="font-family:'Inter'">Hello Container</span>`} />
               </Element>
             )
           }
@@ -58,8 +63,8 @@ export const Toolbox = () => {
           ref={(ref: HTMLButtonElement) =>
             connectors.create(
               ref,
-              <Element is={DBackgroundImage} canvas w={300} maw={300}>
-                <Element is={DText} text="Hello Container" />
+              <Element is={DBackgroundImage} canvas w={"100%"} maw={"100%"}>
+                <Element is={DText} text="Hello Container" p={"120px 60px"} />
               </Element>
             )
           }
