@@ -22,6 +22,7 @@ export default defineConfig({
         return defineRoutes((route) => {
           route("api/save", "routes/api/save/index.ts", { id: "save" });
           route("api/login", "routes/api/login/index.ts", { id: "login" });
+          route("api/delete", "routes/api/delete/index.ts", { id: "delete" });
           route("api/pages", "routes/api/pages/index.ts", { id: "pages" });
         });
       },
