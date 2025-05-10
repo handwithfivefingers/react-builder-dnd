@@ -28,4 +28,8 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    port: 3009,
+  },
+  // pm2 start npm --name "react-dnd-demo" -- start
 });
