@@ -30,6 +30,7 @@ export default defineConfig({
   ],
   server: {
     port: 3009,
+    allowedHosts: ["floware.truyenmai.com"],
   },
   // pm2 start npm --name "react-dnd-demo" -- start
 });
