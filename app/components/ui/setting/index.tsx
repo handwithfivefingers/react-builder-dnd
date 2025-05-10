@@ -2,21 +2,21 @@ import { InputLabel, Select, TextInput } from "@mantine/core";
 
 export interface ISetting {
   children: React.ReactNode;
-  label: string;
+  label?: string;
 }
 export interface ISettingItem {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string | number | undefined;
-  label: string;
+  label?: string;
 }
 export interface ISettingSelect extends Omit<ISettingItem, "onChange"> {
-  options: string[];
+  options: string[] | { label: string; value: string }[];
   onChange: (v: string | null) => void;
 }
 const Root = ({ children, label }: ISetting) => {
   return (
     <div className="flex gap-2 flex-col w-full">
-      <InputLabel size="small">{label}</InputLabel>
+      <InputLabel size="small">{label || "Property"}</InputLabel>
       <div className="flex gap-2 flex-col">{children}</div>
     </div>
   );

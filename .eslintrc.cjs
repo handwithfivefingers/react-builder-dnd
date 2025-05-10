@@ -66,11 +66,7 @@ module.exports = {
           },
         },
       },
-      extends: [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript",
-      ],
+      extends: ["plugin:@typescript-eslint/recommended", "plugin:import/recommended", "plugin:import/typescript"],
     },
 
     // Node
@@ -85,7 +81,7 @@ module.exports = {
     // React
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
+    "react/prop-types": ["warm", { ignoreCase: false }],
     "react/jsx-boolean-value": ["error", "never"],
     "react/jsx-no-bind": [
       "error",
@@ -110,11 +106,9 @@ module.exports = {
         forbid: [">", "}"],
       },
     ],
-
+    "jsx-a11y/click-events-have-key-events": ["warn", { ignoreCase: false }],
+    "jsx-a11y/no-static-element-interactions": ["warn", { ignoreCase: false }],
     // Typescript
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
   },
 };

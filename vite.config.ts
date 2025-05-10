@@ -18,6 +18,13 @@ export default defineConfig({
         v3_singleFetch: true,
         v3_lazyRouteDiscovery: true,
       },
+      routes(defineRoutes) {
+        return defineRoutes((route) => {
+          route("api/save", "routes/api/save/index.ts", { id: "save" });
+          route("api/login", "routes/api/login/index.ts", { id: "login" });
+          route("api/pages", "routes/api/pages/index.ts", { id: "pages" });
+        });
+      },
     }),
     tsconfigPaths(),
   ],

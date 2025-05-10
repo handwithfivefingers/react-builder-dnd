@@ -4,6 +4,7 @@ export interface IBgImgSetting {
   maw?: number | string;
   radius?: string;
   boxShadow?: string;
+  p?: string;
 }
 export interface IBackgroundImage extends IBgImgSetting {
   children?: React.ReactNode;

@@ -32,6 +32,7 @@ p {
   font-size: var(--mantine-p-font-size);
   line-height: var(--mantine-p-line-height);
   font-weight: var(--mantine-p-font-weight);
+  margin-bottom: calc(0.4375rem * var(--mantine-scale));
 }
 
 blockquote {
@@ -71,4 +72,18 @@ code {
   border-radius: var(--mantine-radius-sm);
   font-family: var(--mantine-font-family-monospace);
   font-size: var(--mantine-font-size-xs);
+}
+
+/* TIPTAP */
+.tiptap.ProseMirror {
+  padding: 0;
+  border: unset;
+}
+
+.mantine-RichTextEditor-content {
+  border: unset;
+  background-color: inherit;
+}
+.mantine-RichTextEditor-root {
+  border: unset;
 }

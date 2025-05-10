@@ -5,18 +5,23 @@ import { useLoaderData } from "@remix-run/react";
 import lz from "lzutf8";
 import fs from "node:fs";
 import { DND_RESOLVER } from "~/components";
-export const loader = ({ request }: LoaderFunctionArgs) => {
-  console.log("request.url", request.url);
-  const templateString = fs.readFileSync("test.json", "utf-8");
-  console.log("templateString", templateString);
-  return lz.decompress(lz.decodeBase64(templateString));
+import { db } from "~/libs/db";
+export const loader = ({ request, params }: LoaderFunctionArgs) => {
+  console.log("params", params);
+  const blogItem = db().pages.find((item) => item.id == params.id);
+  console.log("blogItem", blogItem);
+  if (!blogItem) return Response.json({});
+  return Response.json({
+    ...blogItem,
+    content: lz.decompress(lz.decodeBase64(blogItem?.content)),
+  });
 };
 const PagesTemplate = () => {
-  const data = useLoaderData<typeof loader>();
+  const blog = useLoaderData<typeof loader>();
   return (
     <div className="w-full h-full min-h-[100svh]">
       <Editor resolver={DND_RESOLVER} enabled={false}>
-        <Frame data={data}></Frame>
+        <Frame data={blog.content} />
       </Editor>
     </div>
   );

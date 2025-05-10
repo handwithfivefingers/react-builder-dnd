@@ -9,6 +9,12 @@ export interface IContainer {
   h?: number | string;
   mih?: number | string;
   borderRadius?: string;
+  style: React.CSSProperties;
+  display?: string;
+  gap?: string;
+  justify?: string;
+  alignment?: string;
+  direction?: string;
 }
 
 export interface ISettingProps {

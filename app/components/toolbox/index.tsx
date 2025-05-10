@@ -1,77 +1,72 @@
 // components/Toolbox.js
-import { Element, useEditor } from "@craftjs/core";
-import { Button, Text } from "@mantine/core";
-import { DButton } from "../button";
-import { DContainer } from "../container";
-import { DImage } from "../image";
-import { DRow } from "../row";
-import { DText } from "../text";
-import { DBackgroundImage } from "../backgroundImage";
+import { Accordion, Tooltip } from "@mantine/core";
+import React, { useState } from "react";
+import { VscSymbolStructure } from "react-icons/vsc";
+import { BasicComponent } from "./basic";
+import { StructureComponent } from "./structure";
 
-export const Toolbox = () => {
-  const { connectors } = useEditor();
+interface ITab {
+  label: string;
+  element?: React.ReactNode;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  children?: React.ReactNode;
+}
 
+const TABS: ITab[] = [
+  {
+    label: "Structure",
+    icon: <VscSymbolStructure size={24} />,
+    element: <StructureComponent />,
+  },
+  {
+    label: "Basic",
+    icon: <VscSymbolStructure size={24} />,
+    element: <BasicComponent />,
+  },
+];
+
+export const ToolboxTabs = () => {
+  const [tab, setTab] = useState<ITab | null>(null);
   return (
-    <div className="p-2 flex gap-2 flex-col">
-      <div className="flex-shrink-0">
-        <Text className="font-bold">Drag to add</Text>
+    <div className="flex w-full h-full ">
+      <div className="bg-white w-12 flex flex-col flex-shrink-0">
+        {TABS?.map((item, i: number) => {
+          const { label, icon } = item;
+          return (
+            <Tooltip label={label} key={`${label}-${i}`} position="right" withArrow>
+              <button
+                key={`${label}-${i}`}
+                onClick={() => setTab(item)}
+                aria-label={label}
+                className="p-1 border-b relative flex justify-center items-center hover:bg-slate-100/80 transition-all w-full"
+              >
+                <span className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">{icon}</span>
+                <span className="w-full pb-[100%]" />
+              </button>
+            </Tooltip>
+          );
+        })}
       </div>
-      <div className="p-4 border border-dashed border-neutral-500 rounded flex gap-2 flex-wrap w-full">
-        <Button
-          variant="filled"
-          ref={(ref: HTMLButtonElement) => connectors.create(ref, <Element is={DButton}>Hello button</Element>)}
-        >
-          Button
-        </Button>
-        <Button
-          variant="filled"
-          ref={(ref: HTMLButtonElement) =>
-            connectors.create(
-              ref,
-              <Element is={DText} text={`<span style="font-family:'Inter'">Hello Container</span>`} />
-            )
-          }
-        >
-          Text
-        </Button>
-        <Button
-          variant="filled"
-          ref={(ref: HTMLButtonElement) =>
-            connectors.create(
-              ref,
-              <Element is={DContainer} bg="#fff" p={16} canvas size="md">
-                <Element is={DText} text={`<span style="font-family:'Inter'">Hello Container</span>`} />
-              </Element>
-            )
-          }
-        >
-          Container
-        </Button>
-        <Button
-          variant="filled"
-          ref={(ref: HTMLButtonElement) =>
-            connectors.create(ref, <Element gutter={4} p={8} is={DRow} column={"2"} canvas />)
-          }
-        >
-          Row
-        </Button>
-        <Button variant="filled" ref={(ref: HTMLButtonElement) => connectors.create(ref, <Element is={DImage} />)}>
-          Image
-        </Button>
-        <Button
-          variant="filled"
-          ref={(ref: HTMLButtonElement) =>
-            connectors.create(
-              ref,
-              <Element is={DBackgroundImage} canvas w={"100%"} maw={"100%"}>
-                <Element is={DText} text="Hello Container" p={"120px 60px"} />
-              </Element>
-            )
-          }
-        >
-          Background Image
-        </Button>
+
+      <div className="flex w-full h-full flex-col bg-white border-l">
+        <div>{tab?.element}</div>
       </div>
     </div>
+  );
+};
+
+export const Toolbox = () => {
+  return (
+    <Accordion defaultValue="Structure">
+      {TABS?.map((item, i: number) => {
+        return (
+          <Accordion.Item key={item.label + i} value={item.label}>
+            <Accordion.Control>{item.label}</Accordion.Control>
+            <Accordion.Panel>{item.element}</Accordion.Panel>
+          </Accordion.Item>
+        );
+      })}
+    </Accordion>
   );
 };

@@ -2,11 +2,11 @@
 /* eslint-disable import/no-unresolved */
 // components/user/Container.js
 import { Node, useNode } from "@craftjs/core";
-import { BackgroundImage, Box } from "@mantine/core";
+import { BackgroundImage } from "@mantine/core";
+import { IBackgroundImage, IBgImgSetting } from "~/constant/backgroundImage";
 import { cn } from "~/libs/utils";
 import Setting from "../ui/setting";
 import { BoxShadow } from "../ui/setting/boxShadow";
-import { IBackgroundImage, IBgImgSetting } from "~/constant/backgroundImage";
 
 export const DBackgroundImage = ({
   src = "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png",
@@ -15,6 +15,7 @@ export const DBackgroundImage = ({
   w,
   maw,
   radius,
+  p,
 }: IBackgroundImage) => {
   const {
     connectors: { connect, drag },
@@ -23,18 +24,19 @@ export const DBackgroundImage = ({
   } = useNode((state) => ({ isHovered: state.events.hovered, isSelected: state.events.selected }));
 
   return (
-    <Box
+    <BackgroundImage
+      src={src}
+      radius={radius}
+      p={p}
       className={cn(boxShadow, {
-        ["bg-slate-100 dark:bg-slate-800 outline-gray-300 outline-dashed outline-1"]: isHovered || isSelected,
+        ["bg-slate-100 dark:bg-slate-800 outline-indigo-500 outline-dashed outline-1"]: isHovered || isSelected,
       })}
       w={w}
       maw={maw}
       ref={(ref: HTMLImageElement) => connect(drag(ref))}
     >
-      <BackgroundImage src={src} radius={radius}>
-        {children}
-      </BackgroundImage>
-    </Box>
+      {children}
+    </BackgroundImage>
   );
 };
 
@@ -45,10 +47,12 @@ export const ImageSetting = () => {
     boxShadow,
     w,
     maw,
+    p,
   } = useNode((node) => ({
     src: node.data.props.src,
     w: node.data.props.w,
     maw: node.data.props.maw,
+    p: node.data.props.p,
     boxShadow: node.data.props.boxShadow,
   }));
 
@@ -69,6 +73,11 @@ export const ImageSetting = () => {
         value={maw}
         onChange={(e) => setProp((props: IBgImgSetting) => (props.maw = e.target.value))}
       />
+      <Setting.TextField
+        label="padding"
+        value={p}
+        onChange={(e) => setProp((props: IBgImgSetting) => (props.p = e.target.value))}
+      />
 
       <Setting.SelectInput
         label="Radius"
@@ -88,4 +97,12 @@ DBackgroundImage.craft = {
   related: {
     settings: ImageSetting,
   },
+};
+
+DBackgroundImage.fallbackProps = {
+  src: "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png",
+  p: "120px 60px",
+  w: "100%",
+  maw: "100%",
+  h: "100%",
 };

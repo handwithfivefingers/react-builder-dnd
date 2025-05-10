@@ -25,34 +25,34 @@ export const SettingsPanel = () => {
   });
 
   return (
-    <div className="p-2 flex flex-col">
+    <div className="p-2 flex flex-col bg-white h-full">
       <div className="flex gap-2 flex-col">
         <div className="flex gap-2 p-2 justify-between">
-          <div>
-            <Text>Selected</Text>
-          </div>
-          <div>
-            <Badge size="small" color="blue.4" p={2} px={8} className="text-sm">
+          <div className="flex gap-2 items-center">
+            <Text className="text-sm" c="dimmed">
+              Element:
+            </Text>
+            <Badge size="md" color="blue.8" py={1} px={8} variant="gradient">
               {selected?.name}
             </Badge>
           </div>
-        </div>
-        <div className="flex gap-2 border rounded p-2">
-          {selected?.settings && createElement(selected.settings)}
+          {selected?.isDeletable ? (
+            <div className="flex gap-2">
+              <Button
+                size="xs"
+                variant="filled"
+                color="red.8"
+                onClick={() => {
+                  actions.delete(selected.id);
+                }}
+              >
+                Delete
+              </Button>
+            </div>
+          ) : null}
         </div>
 
-        {selected?.isDeletable ? (
-          <div className="flex gap-2 border rounded p-2">
-            <Button
-              variant="filled"
-              onClick={() => {
-                actions.delete(selected.id);
-              }}
-            >
-              Delete
-            </Button>
-          </div>
-        ) : null}
+        <div className="flex gap-2">{selected?.settings && createElement(selected.settings)}</div>
       </div>
     </div>
   );
