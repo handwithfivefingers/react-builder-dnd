@@ -111,9 +111,7 @@ DSection.fallbackProps = {
 
 DSection.craft = {
   rules: {
-    rules: {
-      canDrag: () => true,
-    },
+    canDrag: () => true,
   },
   related: {
     settings: DSectionSetting,

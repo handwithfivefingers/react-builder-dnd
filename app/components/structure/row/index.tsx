@@ -1,12 +1,10 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Element, Node, useNode } from "@craftjs/core";
-import { COLUMN, IDRow } from "~/constant/row";
-import { DColumn } from "../column";
-import Setting from "../ui/setting";
+import { DColumn } from "~/components/structure/column";
+import { IDRow } from "~/constant/row";
 import { cn } from "~/libs/utils";
-import { ContainerSetting } from "../container";
-import { Accordion } from "@mantine/core";
+import { StructureSetting } from "../setting";
 
 export const DRow = ({ column = "2", rowSpan = "2", gutter = 4, p = 0 }: IDRow) => {
   const {
@@ -28,7 +26,7 @@ export const DRow = ({ column = "2", rowSpan = "2", gutter = 4, p = 0 }: IDRow) 
         padding: p,
         gap: `${`${gutter}`?.replace("px", "")}px`,
       }}
-      className={cn("gap-1 transition-colors ", {
+      className={cn("transition-colors grid", {
         [" outline-gray-300 outline-dashed outline-2"]: isHovered || isSelected,
       })}
     >
@@ -42,43 +40,6 @@ export const DRow = ({ column = "2", rowSpan = "2", gutter = 4, p = 0 }: IDRow) 
         />
       ))}
     </div>
-  );
-};
-
-export const DRowSetting = () => {
-  const {
-    actions: { setProp },
-    p,
-    gutter,
-    rowSpan,
-    column,
-  } = useNode((node) => ({
-    p: node.data.props.p,
-    gutter: node.data.props.gutter,
-    rowSpan: node.data.props.rowSpan,
-    column: node.data.props.column,
-  }));
-
-  return (
-    <ContainerSetting layout={false}>
-      <Accordion.Item value="grid">
-        <Accordion.Control>Grid Configure</Accordion.Control>
-        <Accordion.Panel>
-          <Setting.SelectInput
-            label="Row Span"
-            value={rowSpan}
-            options={COLUMN}
-            onChange={(v) => setProp((props: any) => (props.rowSpan = `${v}`))}
-          />
-          <Setting.SelectInput
-            label="Column"
-            value={column}
-            options={COLUMN}
-            onChange={(v) => setProp((props: any) => (props.column = `${v}`))}
-          />
-        </Accordion.Panel>
-      </Accordion.Item>
-    </ContainerSetting>
   );
 };
 
@@ -98,7 +59,7 @@ DRow.craft = {
     },
   },
   related: {
-    settings: DRowSetting,
+    settings: StructureSetting,
   },
 };
 

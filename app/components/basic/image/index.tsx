@@ -4,8 +4,8 @@
 import { Node, useNode } from "@craftjs/core";
 import { Image } from "@mantine/core";
 import { IImages, ISettingProps } from "~/constant/image";
-import Setting from "../ui/setting";
-import { BoxShadow } from "../ui/setting/boxShadow";
+import Setting from "~/components/ui/setting";
+import { BoxShadow } from "~/components/ui/setting/boxShadow";
 
 export const DImage = ({
   src = "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png",

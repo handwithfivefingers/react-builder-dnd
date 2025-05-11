@@ -1,13 +1,12 @@
 // components/Topbar.js
 // import { Box, FormControlLabel, Switch, Grid, Button as MaterialButton } from "@mui/material";
 
-import { Button, Switch, ThemeIcon } from "@mantine/core";
-import lz from "lzutf8";
-import copy from "copy-to-clipboard";
 import { useEditor } from "@craftjs/core";
-import { LuSave } from "react-icons/lu";
-import { IoArrowBack } from "react-icons/io5";
+import { Button, ThemeIcon } from "@mantine/core";
 import { useNavigate } from "@remix-run/react";
+import lz from "lzutf8";
+import { IoArrowBack } from "react-icons/io5";
+import { LuSave } from "react-icons/lu";
 
 export const Topbar = ({ onSubmit }: any) => {
   const { actions, query, enabled } = useEditor((state) => ({

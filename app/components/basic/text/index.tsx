@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Node, useEditor, useNode } from "@craftjs/core";
 import { useEffect, useState } from "react";
-import { DEditor } from "../editor";
-import Setting from "../ui/setting";
+import { DEditor } from "~/components/editor";
+import Setting from "~/components/ui/setting";
 import styles from "./styles.module.css";
 import { cn } from "~/libs/utils";
 import { Accordion } from "@mantine/core";
-import { DimensionSetting, SpacingSetting } from "../ui/setting/commonSetting";
+import { DimensionSetting, SpacingSetting } from "~/components/ui/setting/commonSetting";
 import { IText, ITextSetting } from "~/constant/text";
 
 export const DText = ({ text, p, bg, w, h, m }: IText) => {

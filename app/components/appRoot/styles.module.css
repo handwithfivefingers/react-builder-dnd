@@ -1,0 +1,29 @@
+@media (min-width: 640px) {
+  .appRoot {
+    width: var(--sm-width-size);
+    height: var(--sm-height-size);
+  }
+}
+@media (min-width: 768px) {
+  .appRoot {
+    width: var(--md-width-size);
+    height: var(--md-height-size);
+  }
+}
+@media (min-width: 1024px) {
+  .appRoot {
+    width: var(--lg-width-size);
+    height: var(--lg-height-size);
+  }
+}
+@media (min-width: 1280px) {
+  .appRoot {
+    width: var(--lg-width-size);
+    height: var(--lg-height-size);
+  }
+}
+.appRoot {
+  container: app / inline-size;
+  width: var(--width-size);
+  height: var(--height-size);
+}

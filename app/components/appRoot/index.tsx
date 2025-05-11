@@ -3,18 +3,19 @@ import { IComonProps } from "~/types/common";
 import Setting from "../ui/setting";
 import { DimensionSetting, SpacingSetting } from "../ui/setting/commonSetting";
 import { Accordion } from "@mantine/core";
-import { cn } from "~/libs/utils";
+import { cn, generateProperty } from "~/libs/utils";
+import styles from "./styles.module.css";
+interface IAppRootProps extends IAppRootSettingProps, Omit<IComonProps, "style"> {}
 
-interface IAppRootProps extends IComonProps, IAppRootSettingProps {}
-export const AppRoot = ({ children, className, style, p, m, width, height }: IAppRootProps) => {
+export const AppRoot = ({ children, className, style }: IAppRootProps) => {
   const {
     connectors: { connect, drag },
   } = useNode();
   return (
     <div
       ref={(ref: HTMLDivElement) => connect(drag(ref))}
-      className={cn(className, "overflow-auto")}
-      style={{ ...style, padding: p, margin: m, width, height }}
+      className={cn(className, styles.appRoot, "overflow-auto")}
+      style={style}
     >
       {children}
     </div>
@@ -22,43 +23,37 @@ export const AppRoot = ({ children, className, style, p, m, width, height }: IAp
 };
 
 interface IAppRootSettingProps {
-  p?: number | string;
-  m?: number | string;
-  width?: number | string;
-  height?: number | string;
+  style: Record<string, string | number>;
 }
 export const AppRootSettings = () => {
   const {
     actions: { setProp },
-    p,
-    m,
-    width,
-    height,
+    style,
   } = useNode((node) => ({
-    p: node.data.props.p,
-    m: node.data.props.m,
-    width: node.data.props.width,
-    height: node.data.props.height,
+    style: node.data.props.style,
   }));
 
   return (
     <Setting.Root>
       <Accordion defaultValue={"dimension"}>
         <DimensionSetting
-          vars={[
-            {
-              label: "width",
-              value: width,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: IAppRootSettingProps) => (props.width = e.target.value)),
-            },
-            {
-              label: "height",
-              value: height,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: IAppRootSettingProps) => (props.height = e.target.value)),
-            },
-          ]}
+          // vars={[
+          //   {
+          //     label: "width",
+          //     value: style["--width-size"],
+          //     callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+          //       setProp((props: IAppRootSettingProps) => (props.style["--width-size"] = e.target.value)),
+          //   },
+          //   {
+          //     label: "height",
+          //     value: style["--height-size"],
+          //     callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+          //       setProp((props: IAppRootSettingProps) => (props.style["--height-size"] = e.target.value)),
+          //   },
+          // ]}
+          width={style["--width-size"]}
+          height={style["--height-size"]}
+          setProp={setProp}
         />
       </Accordion>
       <Accordion defaultValue={"spacing"}>
@@ -66,15 +61,15 @@ export const AppRootSettings = () => {
           vars={[
             {
               label: "Padding",
-              value: p,
+              value: style["--padding-size"],
               callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: IAppRootSettingProps) => (props.p = e.target.value)),
+                setProp((props: IAppRootSettingProps) => (props.style["--padding-size"] = e.target.value)),
             },
             {
               label: "Margin",
-              value: m,
+              value: style["--margin-size"],
               callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: IAppRootSettingProps) => (props.m = e.target.value)),
+                setProp((props: IAppRootSettingProps) => (props.style["--margin-size"] = e.target.value)),
             },
           ]}
         />
@@ -93,6 +88,10 @@ AppRoot.craft = {
 };
 
 AppRoot.fallbackProps = {
-  width: "100%",
-  height: "100%",
+  style: {
+    ...generateProperty("width", "100%"),
+    ...generateProperty("height", "100%"),
+    ...generateProperty("padding", "0"),
+    ...generateProperty("margin", "0"),
+  },
 };

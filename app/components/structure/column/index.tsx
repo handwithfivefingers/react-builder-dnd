@@ -2,10 +2,10 @@
 /* eslint-disable import/no-unresolved */
 import { Node, useNode } from "@craftjs/core";
 import { cn } from "~/libs/utils";
-import Setting from "../ui/setting";
-import { BorderRadius } from "../ui/setting/borderRadius";
+import Setting from "~/components/ui/setting";
+import { BorderRadius } from "~/components/ui/setting/borderRadius";
 import { IDColumn, IDColumnSetting } from "~/constant/column";
-import { LayoutSetting } from "../ui/setting/commonSetting";
+import { LayoutSetting } from "~/components/ui/setting/commonSetting";
 import { Accordion } from "@mantine/core";
 
 export const DColumn = ({ children, borderRadius, p = 8, colSpan, display, alignment, justify, gap }: IDColumn) => {

@@ -1,23 +1,23 @@
-import { InputLabel, Select, TextInput } from "@mantine/core";
+import { InputLabel, Select, Tabs, TextInput } from "@mantine/core";
+import { FaDesktop, FaMobile, FaTablet } from "react-icons/fa";
+import { ISetting, ISettingItem, ISettingSelect } from "~/types/setting";
 
-export interface ISetting {
-  children: React.ReactNode;
-  label?: string;
-}
-export interface ISettingItem {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number | undefined;
-  label?: string;
-}
-export interface ISettingSelect extends Omit<ISettingItem, "onChange"> {
-  options: string[] | { label: string; value: string }[];
-  onChange: (v: string | null) => void;
-}
 const Root = ({ children, label }: ISetting) => {
   return (
     <div className="flex gap-2 flex-col w-full">
       <InputLabel size="small">{label || "Property"}</InputLabel>
-      <div className="flex gap-2 flex-col">{children}</div>
+      <div className="flex gap-2 flex-col">
+        <Tabs defaultValue="desktop">
+          <Tabs.List justify="center">
+            <Tabs.Tab value="desktop" leftSection={<FaDesktop size={12} />}></Tabs.Tab>
+            <Tabs.Tab value="tablet" leftSection={<FaTablet size={12} />}></Tabs.Tab>
+            <Tabs.Tab value="phone" leftSection={<FaMobile size={12} />}></Tabs.Tab>
+          </Tabs.List>
+          <Tabs.Panel value="desktop">{children}</Tabs.Panel>
+          <Tabs.Panel value="tablet">Messages tab content</Tabs.Panel>
+          <Tabs.Panel value="phone">Settings tab content</Tabs.Panel>
+        </Tabs>
+      </div>
     </div>
   );
 };

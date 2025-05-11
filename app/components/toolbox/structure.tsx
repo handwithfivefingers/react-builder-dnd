@@ -2,10 +2,10 @@ import { Element, useEditor } from "@craftjs/core";
 import React from "react";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { RxButton, RxContainer } from "react-icons/rx";
-import { DContainer } from "../container";
-import { DRow } from "../row";
+import { DRow } from "../structure/row";
 import { DSection } from "../structure/section";
 import { CardButton } from "./_component";
+import { DContainer } from "../structure/container";
 
 interface IAvailableComponent {
   label: string;

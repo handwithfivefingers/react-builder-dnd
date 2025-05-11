@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Node, useNode } from "@craftjs/core";
 import { Button, InputLabel, Select, TextInput } from "@mantine/core";
-import { Background } from "../ui/setting/background";
+import { Background } from "~/components/ui/setting/background";
 import { IButton, SIZE, VARIANT } from "~/constant/button";
 
 export const DButton = ({ size, variant = "default", color, children, bg }: IButton) => {

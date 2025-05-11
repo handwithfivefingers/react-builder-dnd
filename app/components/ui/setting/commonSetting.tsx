@@ -54,24 +54,25 @@ export const SpacingSetting = ({ vars }: IDimensionSetting) => {
     </Accordion.Item>
   );
 };
-export const DimensionSetting = ({ vars }: IDimensionSetting) => {
+export const DimensionSetting = ({ height, width, setProp }: any) => {
   return (
     <Accordion.Item value="dimension">
       <Accordion.Control>Size</Accordion.Control>
       <Accordion.Panel>
-        {vars?.map((item, i) => {
-          const key = `${item.label}-${i}`;
-          if (!("options" in item)) {
-            // item is TextFieldVar
-            return <Setting.TextField key={key} label={item.label} value={item.value} onChange={item.callback} />;
-          } else {
-            // item is OptionFieldVar, adapt callback for TextField
-            const adaptedCallback = (event: React.ChangeEvent<HTMLInputElement>) => {
-              item.callback(event.target.value);
-            };
-            return <Setting.TextField key={key} label={item.label} value={item.value} onChange={adaptedCallback} />;
+        <Setting.TextField
+          label={"width"}
+          value={width}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProp((props: { style: Record<string, string> }) => (props.style["--width-size"] = e.target.value))
           }
-        })}
+        />
+        <Setting.TextField
+          label={"height"}
+          value={height}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setProp((props: { style: Record<string, string> }) => (props.style["--height-size"] = e.target.value))
+          }
+        />
       </Accordion.Panel>
     </Accordion.Item>
   );
