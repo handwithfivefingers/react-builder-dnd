@@ -1,15 +1,15 @@
 import { Element, useEditor } from "@craftjs/core";
 import { LuImage } from "react-icons/lu";
+import { MdSmartButton } from "react-icons/md";
 import { PiSelectionBackgroundBold } from "react-icons/pi";
-import { RxButton, RxTextAlignLeft } from "react-icons/rx";
+import { RxTextAlignLeft } from "react-icons/rx";
+import { TbNewSection } from "react-icons/tb";
 import { DBackgroundImage } from "~/components/basic/backgroundImage";
 import { DButton } from "~/components/basic/button";
 import { DImage } from "~/components/basic/image";
 import { DText } from "~/components/basic/text";
-import { CardButton } from "./_component";
 import { D_Div } from "../basic/divBlock";
-import { TbNewSection } from "react-icons/tb";
-import { MdSmartButton } from "react-icons/md";
+import { CardButton } from "./_component";
 
 interface IAvailableComponent {
   label: string;
@@ -17,6 +17,7 @@ interface IAvailableComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component: React.FC<any> & { fallbackProps?: any };
   children?: React.ReactNode;
+  text?: string;
   canvas?: boolean;
 }
 const LIST_AVAILABLE_COMPONENTS: IAvailableComponent[] = [
@@ -37,7 +38,8 @@ const LIST_AVAILABLE_COMPONENTS: IAvailableComponent[] = [
     label: "Text",
     icon: <RxTextAlignLeft size={24} />,
     component: DText,
-    children: `Text`,
+    text: `<p>Content goes here</p>`,
+    children: `<p>Content goes here</p>`,
   },
   {
     label: "Image",

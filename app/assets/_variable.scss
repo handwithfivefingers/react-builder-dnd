@@ -1,0 +1,36 @@
+$prefix: "", "sm-", "md-";
+$sizes: "width-size", "height-size", "padding-size", "margin-size", "top-property", "left-property", "right-property",
+  "bottom-property";
+$properties: "position-property", "display-property", "align-items-property", "justify-content-property",
+  "flexDirection-property", "gap-property", "background-property", "borderRadius-property", "boxShadow-property",
+  "zIndex-property", "colSpan-property", "rowSpan-property", "gridSpan-property";
+
+@each $pre in $prefix {
+  @each $size in $sizes {
+    @property --#{$pre}#{$size} {
+      syntax: "<length> |<number> | <percent> |  auto";
+      inherits: false;
+    }
+  }
+  @each $prop in $properties {
+    @property --#{$pre}#{$prop} {
+      syntax: "*";
+      inherits: false;
+    }
+  }
+}
+@property --md-display-property {
+  syntax: "*";
+  inherits: false;
+  initial-value: block;
+}
+@property --sm-display-property {
+  syntax: "*";
+  inherits: false;
+  initial-value: block;
+}
+@property --display-property {
+  syntax: "*";
+  inherits: false;
+  initial-value: block;
+}

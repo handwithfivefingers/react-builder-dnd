@@ -1,0 +1,23 @@
+.row {
+  @include width("width-size");
+  @include height("height-size");
+  @include margin("margin-size");
+  @include padding("padding-size");
+  @include position("position-property");
+  @include top("top-property");
+  @include left("left-property");
+  @include right("right-property");
+  @include bottom("bottom-property");
+  @include z-index("zIndex-property");
+  @include display("display-property");
+  @include flexDirection("flexDirection-property");
+  @include gap("gap-property");
+  @include alignment("align-items-property");
+  @include justify("justify-content-property");
+  @include background("background-property");
+  @include boxShadow("boxShadow-property");
+  @include borderRadius("borderRadius-property");
+  @include colSpan("colSpan-property");
+  @include rowSpan("rowSpan-property");
+  @include grid("grid-property");
+}

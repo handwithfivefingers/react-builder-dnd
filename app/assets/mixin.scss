@@ -1,0 +1,255 @@
+@mixin container() {
+  @container app (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin sm() {
+  @container app (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @container app  (min-width: 768px) {
+    @content;
+  }
+}
+@mixin lg() {
+  @container app  (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @container app  (min-width: 1280px) {
+    @content;
+  }
+}
+
+// DISPLAY
+
+@mixin display($key) {
+  @include sm() {
+    display: var(--sm-#{$key});
+  }
+  @include md() {
+    display: var(--md-#{$key});
+  }
+  display: var(--#{$key});
+}
+
+@mixin grid($key) {
+  @include sm() {
+    grid-template-columns: repeat((var(--sm-#{$key}), 1fr));
+  }
+  @include md() {
+    grid-template-columns: repeat((var(--md-#{$key}), 1fr));
+  }
+  grid-template-columns: repeat((var(--#{$key}), 1fr));
+}
+
+// Column SPAN
+@mixin colSpan($key) {
+  @include sm() {
+    grid-column: span var(--sm-#{$key});
+  }
+  @include md() {
+    grid-column: span var(--md-#{$key});
+  }
+  grid-column: span var(--#{$key});
+}
+// Row SPAN
+@mixin rowSpan($key) {
+  @include sm() {
+    grid-row: span var(--sm-#{$key});
+  }
+  @include md() {
+    grid-row: span var(--md-#{$key});
+  }
+  grid-row: span var(--#{$key});
+}
+
+// DISPLAY
+
+@mixin width($key) {
+  @include sm() {
+    width: var(--sm-#{$key});
+  }
+  @include md() {
+    width: var(--md-#{$key});
+  }
+  width: var(--#{$key});
+}
+
+@mixin height($key) {
+  @include sm() {
+    height: var(--sm-#{$key});
+  }
+  @include md() {
+    height: var(--md-#{$key});
+  }
+  height: var(--#{$key});
+}
+@mixin margin($key) {
+  @include sm() {
+    margin: var(--sm-#{$key});
+  }
+  @include md() {
+    margin: var(--md-#{$key});
+  }
+  margin: var(--#{$key});
+}
+@mixin padding($key) {
+  @include sm() {
+    padding: var(--sm-#{$key});
+  }
+  @include md() {
+    padding: var(--md-#{$key});
+  }
+  padding: var(--#{$key});
+}
+
+@mixin position($key) {
+  @include sm() {
+    position: var(--sm-#{$key});
+  }
+  @include md() {
+    position: var(--md-#{$key});
+  }
+  position: var(--#{$key});
+}
+
+@mixin top($key) {
+  @include sm() {
+    top: var(--sm-#{$key});
+  }
+  @include md() {
+    top: var(--md-#{$key});
+  }
+  top: var(--#{$key});
+  // @include lg() {
+  //   top: var(--lg-#{$key});
+  // }
+}
+
+@mixin bottom($key) {
+  @include sm() {
+    bottom: var(--sm-#{$key});
+  }
+  @include md() {
+    bottom: var(--md-#{$key});
+  }
+  bottom: var(--#{$key});
+  // @include lg() {
+  //   bottom: var(--lg-#{$key});
+  // }
+}
+
+@mixin right($key) {
+  @include sm() {
+    right: var(--sm-#{$key});
+  }
+  @include md() {
+    right: var(--md-#{$key});
+  }
+  right: var(--#{$key});
+  // @include lg() {
+  //   right: var(--lg-#{$key});
+  // }
+}
+
+@mixin left($key) {
+  @include sm() {
+    top: var(--sm-#{$key});
+  }
+  @include md() {
+    top: var(--md-#{$key});
+  }
+  top: var(--#{$key});
+  //   @include lg() {
+  //     top: var(--lg-#{$key});
+  //   }
+}
+
+@mixin z-index($key) {
+  @include sm() {
+    z-index: var(--sm-#{$key});
+  }
+  @include md() {
+    z-index: var(--md-#{$key});
+  }
+  z-index: var(--#{$key});
+  // @include lg() {
+  //   z-index: var(--lg-#{$key});
+  // }
+}
+
+@mixin alignment($key) {
+  @include sm() {
+    align-items: var(--sm-#{$key});
+  }
+  @include md() {
+    align-items: var(--md-#{$key});
+  }
+  align-items: var(--#{$key});
+}
+@mixin justify($key) {
+  @include sm() {
+    justify-content: var(--sm-#{$key});
+  }
+  @include md() {
+    justify-content: var(--md-#{$key});
+  }
+  justify-content: var(--#{$key});
+}
+@mixin flexDirection($key) {
+  @include sm() {
+    flex-direction: var(--sm-#{$key});
+  }
+  @include md() {
+    flex-direction: var(--md-#{$key});
+  }
+
+  flex-direction: var(--#{$key});
+}
+
+@mixin gap($key) {
+  @include sm() {
+    gap: var(--sm-#{$key});
+  }
+  @include md() {
+    gap: var(--md-#{$key});
+  }
+  gap: var(--#{$key});
+}
+
+@mixin background($key) {
+  @include sm() {
+    background: var(--sm-#{$key});
+  }
+  @include md() {
+    background: var(--md-#{$key});
+  }
+  background: var(--#{$key});
+}
+
+@mixin boxShadow($key) {
+  @include sm() {
+    box-shadow: var(--sm-#{$key});
+  }
+  @include md() {
+    box-shadow: var(--md-#{$key});
+  }
+  box-shadow: var(--#{$key});
+}
+
+@mixin borderRadius($key) {
+  @include sm() {
+    border-radius: var(--sm-#{$key});
+  }
+  @include md() {
+    border-radius: var(--md-#{$key});
+  }
+  border-radius: var(--#{$key});
+}

@@ -1,21 +1,20 @@
 import { Editor, Element, Frame } from "@craftjs/core";
 import { Layers } from "@craftjs/layers";
-import { Accordion, Text, TextInput, ThemeIcon } from "@mantine/core";
+import { Accordion, TextInput, ThemeIcon } from "@mantine/core";
+import { useRef, useState } from "react";
+import { FaDesktop, FaMobileAlt, FaTabletAlt } from "react-icons/fa";
 import { AppRoot } from "~/components/appRoot";
 import { SettingsPanel } from "~/components/settingPanel";
 import { Toolbox } from "~/components/toolbox";
 import { Topbar } from "~/components/topBar";
-import { DND_RESOLVER } from "..";
-import { useEffect, useRef, useState } from "react";
-import { FaDesktop, FaMobile, FaTablet } from "react-icons/fa";
 import { cn } from "~/libs/utils";
+import { DND_RESOLVER } from "..";
 
 export interface DNDEditorProps {
   onSave?: (contentPaser: string, title: string) => void;
   data?: string;
   title?: string;
 }
-let timeout: NodeJS.Timeout | null;
 export const DNDEditor = ({ onSave, data, title }: DNDEditorProps) => {
   const [t, setT] = useState(title || "New Page");
   const [w, setW] = useState("100%");
@@ -69,31 +68,31 @@ export const DNDEditor = ({ onSave, data, title }: DNDEditorProps) => {
           <div className="col-span-6 lg:col-span-8 h-full overflow-hidden  border-l border-r bg-black/20 px-3">
             <div className="flex justify-center py-2 gap-2">
               <ThemeIcon
-                className={cn("cursor-pointer text-black bg-transparent hover:bg-black/50 hover:text-white", {
-                  ["bg-black text-white"]: w === "100%",
+                className={cn("cursor-pointer text-black bg-transparent hover:bg-neutral-500 hover:text-white", {
+                  ["!bg-black text-white"]: w === "100%",
                 })}
                 onClick={() => setW("100%")}
               >
                 <FaDesktop size={12} />
               </ThemeIcon>
               <ThemeIcon
-                className={cn("cursor-pointer text-black bg-transparent hover:bg-black/50 hover:text-white", {
-                  ["bg-black text-white"]: w === "768px",
-                })}
-                onClick={() => setW("768px")}
-              >
-                <FaTablet size={12} />
-              </ThemeIcon>
-              <ThemeIcon
-                className={cn("cursor-pointer text-black bg-transparent hover:bg-black/50 hover:text-white", {
-                  ["bg-black text-white"]: w === "640px",
+                className={cn("cursor-pointer text-black bg-transparent hover:bg-neutral-500 hover:text-white", {
+                  ["!bg-black text-white"]: w === "640px",
                 })}
                 onClick={() => setW("640px")}
               >
-                <FaMobile size={12} />
+                <FaTabletAlt size={12} />
+              </ThemeIcon>
+              <ThemeIcon
+                className={cn("cursor-pointer text-black bg-transparent hover:bg-neutral-500 hover:text-white", {
+                  ["!bg-black text-white"]: w === "525px",
+                })}
+                onClick={() => setW("525px")}
+              >
+                <FaMobileAlt size={12} />
               </ThemeIcon>
             </div>
-            <div className="h-full flex items-center mx-auto" style={{ width: w }} ref={mainRef}>
+            <div className="h-full flex items-start mx-auto" style={{ width: w }} ref={mainRef}>
               <Frame data={data}>
                 <Element is={AppRoot} className="bg-white" canvas {...AppRoot.fallbackProps} />
               </Frame>

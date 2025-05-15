@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "variable";
+@import "lib";
+@import "editor";
 
 html,
 body {

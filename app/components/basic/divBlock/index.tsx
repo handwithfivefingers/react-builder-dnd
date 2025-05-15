@@ -2,8 +2,8 @@ import { useNode } from "@craftjs/core";
 import { TbNewSection } from "react-icons/tb";
 import { AppRootSettings } from "~/components/appRoot";
 import { ISection } from "~/constant/section";
-import { cn } from "~/libs/utils";
-import styles from "./styles.module.css";
+import { cn, generateProperty } from "~/libs/utils";
+import styles from "./styles.module.scss";
 export const D_Div = ({ className, children, style, ...props }: ISection) => {
   const {
     connectors: { connect, drag },
@@ -14,7 +14,8 @@ export const D_Div = ({ className, children, style, ...props }: ISection) => {
     <div
       ref={(ref: HTMLDivElement) => connect(drag(ref))}
       className={cn(className, styles.div, {
-        ["bg-slate-100 dark:bg-slate-800 outline-gray-300 outline-dashed outline-1"]: isHovered || isSelected,
+        ["bg-sky-100 dark:bg-slate-800 outline-sky-800 outline-dashed outline-2 -outline-offset-2"]:
+          isHovered || isSelected,
       })}
       style={style}
       {...props}
@@ -28,11 +29,42 @@ D_Div.IconDisplay = TbNewSection;
 
 D_Div.fallbackProps = {
   style: {
-    "--width-size": "100%",
-    "--sm-width-size": "40px",
-    "--height-size": "100%",
-    "--padding-size": "100%",
-    "--margin-size": "100%",
+    ...generateProperty({
+      propsName: "width",
+      value: "100%",
+    }),
+    ...generateProperty({
+      propsName: "height",
+      value: "auto",
+    }),
+    ...generateProperty({
+      propsName: "padding",
+      value: "2px",
+    }),
+    ...generateProperty({
+      propsName: "margin",
+      value: "auto",
+    }),
+    // ...generateProperty({
+    //   propsName: "background",
+    //   value: "#fff",
+    //   suffix: "property",
+    // }),
+    // ...generateProperty({
+    //   propsName: "position",
+    //   value: "static",
+    //   suffix: "property",
+    // }),
+    // ...generateProperty({
+    //   propsName: "display",
+    //   value: "block",
+    //   suffix: "property",
+    // }),
+    // ...generateProperty({
+    //   propsName: "justify-content",
+    //   value: "",
+    //   suffix: "property",
+    // }),
   },
 };
 

@@ -26,18 +26,18 @@ export const ImageSetting = () => {
     src: node.data.props.src,
     boxShadow: node.data.props.boxShadow,
   }));
-
-  return (
-    <Setting.Root label="Setting">
-      <Setting.TextField
-        label="source"
-        value={src}
-        onChange={(e) => setProp((props: ISettingProps) => (props.src = e.target.value))}
-      />
-      <BoxShadow value={boxShadow} onChange={(e: string) => setProp((props: any) => (props.boxShadow = e))} />
-      {/* <Background value={bg} onChange={(e: string) => setProp((props: any) => (props.bg = e))} /> */}
-    </Setting.Root>
-  );
+  return "undefined";
+  // return (
+  //   <Setting.Root label="Setting">
+  //     <Setting.TextField
+  //       label="source"
+  //       value={src}
+  //       onChange={(e) => setProp((props: ISettingProps) => (props.src = e.target.value))}
+  //     />
+  //     <BoxShadow value={boxShadow} onChange={(e: string) => setProp((props: any) => (props.boxShadow = e))} />
+  //     {/* <Background value={bg} onChange={(e: string) => setProp((props: any) => (props.bg = e))} /> */}
+  //   </Setting.Root>
+  // );
 };
 
 DImage.craft = {

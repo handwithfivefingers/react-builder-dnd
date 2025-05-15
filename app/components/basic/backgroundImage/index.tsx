@@ -55,39 +55,39 @@ export const ImageSetting = () => {
     p: node.data.props.p,
     boxShadow: node.data.props.boxShadow,
   }));
+  return "undefined";
+  // return (
+  //   <Setting.Root label="Setting">
+  //     <Setting.TextField
+  //       label="source"
+  //       value={src}
+  //       onChange={(e) => setProp((props: IBgImgSetting) => (props.src = e.target.value))}
+  //     />
+  //     <Setting.TextField
+  //       label="width"
+  //       value={w}
+  //       onChange={(e) => setProp((props: IBgImgSetting) => (props.w = e.target.value))}
+  //     />
+  //     <Setting.TextField
+  //       label="max-width"
+  //       value={maw}
+  //       onChange={(e) => setProp((props: IBgImgSetting) => (props.maw = e.target.value))}
+  //     />
+  //     <Setting.TextField
+  //       label="padding"
+  //       value={p}
+  //       onChange={(e) => setProp((props: IBgImgSetting) => (props.p = e.target.value))}
+  //     />
 
-  return (
-    <Setting.Root label="Setting">
-      <Setting.TextField
-        label="source"
-        value={src}
-        onChange={(e) => setProp((props: IBgImgSetting) => (props.src = e.target.value))}
-      />
-      <Setting.TextField
-        label="width"
-        value={w}
-        onChange={(e) => setProp((props: IBgImgSetting) => (props.w = e.target.value))}
-      />
-      <Setting.TextField
-        label="max-width"
-        value={maw}
-        onChange={(e) => setProp((props: IBgImgSetting) => (props.maw = e.target.value))}
-      />
-      <Setting.TextField
-        label="padding"
-        value={p}
-        onChange={(e) => setProp((props: IBgImgSetting) => (props.p = e.target.value))}
-      />
-
-      <Setting.SelectInput
-        label="Radius"
-        value={"md"}
-        options={["sm", "md", "lg", "xl"]}
-        onChange={(e: any) => setProp((props: IBgImgSetting) => ((props as any).radius = e))}
-      />
-      <BoxShadow value={boxShadow} onChange={(e: string) => setProp((props: any) => (props.boxShadow = e))} />
-    </Setting.Root>
-  );
+  //     <Setting.SelectInput
+  //       label="Radius"
+  //       value={"md"}
+  //       options={["sm", "md", "lg", "xl"]}
+  //       onChange={(e: any) => setProp((props: IBgImgSetting) => ((props as any).radius = e))}
+  //     />
+  //     <BoxShadow value={boxShadow} onChange={(e: string) => setProp((props: any) => (props.boxShadow = e))} />
+  //   </Setting.Root>
+  // );
 };
 
 DBackgroundImage.craft = {

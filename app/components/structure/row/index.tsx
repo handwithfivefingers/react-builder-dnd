@@ -1,12 +1,10 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Element, Node, useNode } from "@craftjs/core";
-import { DColumn } from "~/components/structure/column";
-import { IDRow } from "~/constant/row";
-import { cn } from "~/libs/utils";
-import { StructureSetting } from "../setting";
-
-export const DRow = ({ column = "2", rowSpan = "2", gutter = 4, p = 0 }: IDRow) => {
+import { Node, useNode } from "@craftjs/core";
+import { AppRootSettings } from "~/components/appRoot";
+import { cn, generateProperty } from "~/libs/utils";
+import styles from "./styles.module.scss"
+export const DRow = ({ style, children }: { style: Record<string, string>; children: any }) => {
   const {
     connectors: { connect, drag },
     id,
@@ -17,28 +15,23 @@ export const DRow = ({ column = "2", rowSpan = "2", gutter = 4, p = 0 }: IDRow) 
     isHovered: state.events.hovered,
     isSelected: state.events.selected,
   }));
+
   return (
     <div
       ref={(ref: HTMLDivElement) => connect(drag(ref))}
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${rowSpan}, minmax(0, 1fr))`,
-        padding: p,
-        gap: `${`${gutter}`?.replace("px", "")}px`,
+        ...style,
       }}
-      className={cn("transition-colors grid", {
+      className={cn("transition-colors grid", styles.row, {
         [" outline-gray-300 outline-dashed outline-2"]: isHovered || isSelected,
       })}
     >
-      {[...Array(Number(column)).keys()].map((item, i) => (
-        <Element
-          is={DColumn}
-          canvas
-          key={`dRow-${id}dColumn-${i}`}
-          id={`dRow-${id}dColumn-${i}`}
-          {...DColumn.fallbackProps}
-        />
-      ))}
+      {children ? (
+        children
+      ) : (
+        <div className="p-2 m-4 border-gray-300 border-dashed border-2 hover:bg-slate-200 h-12">Column goes here</div>
+      )}
     </div>
   );
 };
@@ -49,29 +42,32 @@ DRow.craft = {
       return node.data.props.text != "Drag";
     },
     canDrop: (node: Node) => {
-      console.log("dRow can Drop", node);
       return node.data.name !== "dRow";
     },
     canMoveIn: (incomming: Node[], self: Node, helper: any) => {
-      console.log("can Move In", self, incomming[0].data.name, helper);
       const canMovingIn = incomming[0].data.name == "DColumn";
       return canMovingIn;
     },
   },
   related: {
-    settings: StructureSetting,
+    settings: AppRootSettings,
   },
 };
 
 DRow.fallbackProps = {
-  column: 2,
-  rowSpan: 2,
-  gutter: "4px",
-  p: "8px",
   style: {
-    padding: 8,
-    position: "static",
-    width: "100%",
-    height: "auto",
+    ...generateProperty({
+      propsName: "padding",
+      value: "12px",
+    }),
+    ...generateProperty({
+      propsName: "display",
+      value: "grid",
+      suffix: "property",
+    }),
+    ...generateProperty({
+      propsName: "height",
+      value: "auto",
+    }),
   },
 };

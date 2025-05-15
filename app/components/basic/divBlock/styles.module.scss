@@ -1,0 +1,13 @@
+.div {
+  @include width("width-size");
+  @include height("height-size");
+  @include position("position-property");
+  @include top("top-property");
+  @include left("left-property");
+  @include right("right-property");
+  @include bottom("bottom-property");
+  @include z-index("zIndex-property");
+  @include display("display-property");
+  @include flexDirection("flex-direction-property");
+  @include gap("gap-property");
+}

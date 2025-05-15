@@ -29,6 +29,16 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+        silenceDeprecations: ["legacy-js-api","mixed-decls","import"],
+        additionalData: `@import '/app/assets/mixin.scss';
+        `,
+      },
+    },
+  },
   server: {
     port: 3009,
     allowedHosts: ["floware.truyenmai.com"],

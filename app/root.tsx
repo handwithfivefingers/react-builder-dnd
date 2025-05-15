@@ -1,10 +1,7 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import '@mantine/core/styles.css';
-import "./tailwind.css";
-import '@mantine/tiptap/styles.css';
+import '~/assets/styles.scss'
 import { MantineProvider } from "@mantine/core";
-import '~/assets/styles.css'
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

@@ -6,6 +6,9 @@ import { DRow } from "../structure/row";
 import { DSection } from "../structure/section";
 import { CardButton } from "./_component";
 import { DContainer } from "../structure/container";
+import { TfiLayoutColumn3 } from "react-icons/tfi";
+import { TfiLayoutSidebar2 } from "react-icons/tfi";
+import { DColumn } from "../structure/column";
 
 interface IAvailableComponent {
   label: string;
@@ -25,9 +28,15 @@ const LIST_AVAILABLE_COMPONENTS: IAvailableComponent[] = [
   },
   {
     label: "Row",
-    icon: <LuLayoutDashboard size={24} />,
+    icon: <TfiLayoutColumn3 size={24} />,
     canvas: true,
     component: DRow,
+  },
+  {
+    label: "Column",
+    icon: <TfiLayoutSidebar2 size={24} />,
+    canvas: true,
+    component: DColumn,
   },
   {
     label: "Section",

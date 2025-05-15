@@ -9,4 +9,5 @@ export interface ITextSetting {
 
 export interface IText extends ITextSetting {
   children?: React.ReactNode;
+  style: Record<string, string>;
 }

@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Node, useEditor, useNode } from "@craftjs/core";
 import { useEffect, useState } from "react";
+import { AppRootSettings } from "~/components/appRoot";
 import { DEditor } from "~/components/editor";
-import Setting from "~/components/ui/setting";
-import styles from "./styles.module.css";
-import { cn } from "~/libs/utils";
-import { Accordion } from "@mantine/core";
-import { DimensionSetting, SpacingSetting } from "~/components/ui/setting/commonSetting";
-import { IText, ITextSetting } from "~/constant/text";
+import { IText } from "~/constant/text";
+import { cn, generateProperty } from "~/libs/utils";
+import styles from "./styles.module.scss";
 
-export const DText = ({ text, p, bg, w, h, m }: IText) => {
+export const DText = ({ text, style }: IText) => {
   const {
     connectors: { connect, drag },
     hasSelectedNode,
@@ -39,14 +37,14 @@ export const DText = ({ text, p, bg, w, h, m }: IText) => {
       ref={(ref: HTMLDivElement) => connect(drag(ref))}
       onClick={() => isEnabled && setEditable(true)}
       aria-hidden="true"
-      className={cn("relative ", {
-        ["outline-1 outline-dashed outline-neutral-500 "]: isHover && !hasSelectedNode,
+      className={cn("relative ", styles.textBlock, {
+        ["outline-2 outline-dashed outline-sky-800 -outline-offset-2 "]: isHover && !hasSelectedNode,
         ["z-10"]: hasSelectedNode,
       })}
-      style={{ backgroundColor: bg, padding: p, margin: m, width: w, height: h }}
+      style={style}
     >
       {!editable ? (
-        <div className={cn(styles.content, {})} dangerouslySetInnerHTML={{ __html: text }} />
+        <div className={cn(styles.content)} dangerouslySetInnerHTML={{ __html: text }} />
       ) : (
         <DEditor content={text} onSave={onSave} onCancel={onCancel} />
       )}
@@ -54,72 +52,78 @@ export const DText = ({ text, p, bg, w, h, m }: IText) => {
   );
 };
 
-export const TextSettings = () => {
-  const {
-    actions: { setProp },
-    p,
-    m,
-    width,
-    height,
-  } = useNode((node) => ({
-    p: node.data.props.p,
-    m: node.data.props.m,
-    width: node.data.props.w,
-    height: node.data.props.h,
-  }));
+// export const TextSettings = () => {
+//   const {
+//     actions: { setProp },
+//     style,
+//   } = useNode((node) => ({
+//     style: node.data.props.style,
+//   }));
 
-  return (
-    <Setting.Root>
-      <Accordion defaultValue={"spacing"}>
-        <SpacingSetting
-          vars={[
-            {
-              label: "Padding",
-              value: p,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: ITextSetting) => (props.p = e.target.value)),
-            },
-            {
-              label: "Margin",
-              value: m,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: ITextSetting) => (props.m = e.target.value)),
-            },
-          ]}
-        />
-        <DimensionSetting
-          vars={[
-            {
-              label: "Width",
-              value: width,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: ITextSetting) => (props.w = e.target.value)),
-            },
-            {
-              label: "Height",
-              value: height,
-              callback: (e: React.ChangeEvent<HTMLInputElement>) =>
-                setProp((props: ITextSetting) => (props.h = e.target.value)),
-            },
-          ]}
-        />
-      </Accordion>
-    </Setting.Root>
-  );
-};
+//   return <Setting.Root setProp={setProp} style={style} />;
+//   // return (
+//   // <Setting.Root>
+//   //   <Accordion defaultValue={"spacing"}>
+//   //     <SpacingSetting
+//   //       vars={[
+//   //         {
+//   //           label: "Padding",
+//   //           value: p,
+//   //           callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+//   //             setProp((props: ITextSetting) => (props.p = e.target.value)),
+//   //         },
+//   //         {
+//   //           label: "Margin",
+//   //           value: m,
+//   //           callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+//   //             setProp((props: ITextSetting) => (props.m = e.target.value)),
+//   //         },
+//   //       ]}
+//   //     />
+//   //     <DimensionSetting
+//   //       vars={[
+//   //         {
+//   //           label: "Width",
+//   //           value: width,
+//   //           callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+//   //             setProp((props: ITextSetting) => (props.w = e.target.value)),
+//   //         },
+//   //         {
+//   //           label: "Height",
+//   //           value: height,
+//   //           callback: (e: React.ChangeEvent<HTMLInputElement>) =>
+//   //             setProp((props: ITextSetting) => (props.h = e.target.value)),
+//   //         },
+//   //       ]}
+//   //     />
+//   //   </Accordion>
+//   // </Setting.Root>
+//   // );
+// };
 
 DText.craft = {
   rules: {
     canDrag: (node: Node) => node.data.props.text != "Drag",
   },
   related: {
-    settings: TextSettings,
+    settings: AppRootSettings,
   },
 };
 
 DText.fallbackProps = {
-  p: 8,
-  width: "100%",
-  height: "auto",
-  text: `<span style="font-family:'Inter'">Content goes here</span>`,
+  style: {
+    ...generateProperty({
+      propsName: "width",
+      value: "100%",
+    }),
+    ...generateProperty({
+      propsName: "height",
+      value: "auto",
+    }),
+    ...generateProperty({
+      propsName: "padding",
+      value: "8px 0",
+    }),
+  },
+  text: `<p>Content goes here</p>`,
 };
